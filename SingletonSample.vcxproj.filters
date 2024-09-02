@@ -9,4 +9,7 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Singleton.h" />
+  </ItemGroup>
 </Project>
