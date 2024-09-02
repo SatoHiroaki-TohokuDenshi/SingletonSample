@@ -16,10 +16,13 @@ public:
 	/// <summary>
 	/// インスタンスを取得
 	/// </summary>
+	/// <typeparam name="...Args">任意の引数の型</typeparam>
+	/// <param name="...args">任意の数の引数</param>
 	/// <returns>インスタンスのアドレス</returns>
-	static T* GetInstance() {
+	template <typename... Args>
+	static T* GetInstance(Args&&... args) {
 		if (!instance_) {
-			Create();
+			Create(std::forward<Args>(args)...);
 		}
 		return instance_.get();
 	}
@@ -28,8 +31,11 @@ private:
 	/// <summary>
 	/// インスタンスを作成
 	/// </summary>
-	static void Create() {
-		instance_ = std::make_unique<T>();
+	/// <typeparam name="...Args">任意の引数の型</typeparam>
+	/// <param name="...args">任意の数の引数</param>
+	template <typename... Args>
+	static void Create(Args&&... args) {
+		instance_ = std::make_unique<T>(std::forward<Args>(args)...);
 	}
 
 	/// <summary>
