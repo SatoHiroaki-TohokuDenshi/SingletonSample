@@ -27,6 +27,19 @@ public:
 		return instance_.get();
 	}
 
+	/// <summary>
+	/// インスタンスをリセット
+	/// </summary>
+	/// <typeparam name="...Args">任意の引数の型</typeparam>
+	/// <param name="...args">任意の数の引数</param>
+	/// <returns>新しいインスタンスのアドレス</returns>
+	template <typename... Args>
+	static T* ResetInstance(Args&&... args) {
+		instance_.reset();
+		Create(std::forward<Args>(args)...);
+		return instance_.get();
+	}
+
 private:
 	/// <summary>
 	/// インスタンスを作成

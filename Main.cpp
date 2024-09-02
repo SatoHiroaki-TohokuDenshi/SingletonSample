@@ -15,6 +15,7 @@ private:
 int main() {
 	std::cout << "Hello, C++" << std::endl;
 	auto sample = Singleton<Sample>::GetInstance();
+	sample = Singleton<Sample>::ResetInstance(5);
 
 	return 0;
 }
